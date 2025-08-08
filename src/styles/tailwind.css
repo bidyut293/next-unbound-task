@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Global Colors */
+    --global-bg-1: #000a1f;
+    --global-bg-2: #232331;
+    --global-bg-3: #292738;
+    --global-bg-4: #464548;
+    --global-bg-5: #6d18ef;
+    --global-bg-6: #d1cfdb;
+    --global-text-1: #67687a;
+    --global-text-2: #a8adb3;
+    --global-text-3: #e4e4e4;
+    --global-text-4: #ffffff;
+    --global-text-5: #ffffff26;
+
+    /* EditText Colors */
+    --edittext-bg-1: #fafafa;
+
+    /* Footer Colors */
+    --footer-text-1: #ffffffb2;
+  }
+
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Optimize focus styles for accessibility */
+  *:focus {
+    outline: 2px solid var(--global-bg-5);
+    outline-offset: 2px;
+  }
+
+  /* Improve image rendering */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Optimize button interactions */
+  button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Smooth transitions for better UX */
+  .transition-base {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Loading placeholder for images */
+  .image-loading {
+    background: linear-gradient(90deg, var(--global-bg-2) 0%, var(--global-bg-3) 50%, var(--global-bg-2) 100%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@layer utilities {
+  /* Global */
+  .bg-global-1 {
+    background-color: var(--global-bg-1);
+  }
+  .bg-global-2 {
+    background-color: var(--global-bg-2);
+  }
+  .bg-global-3 {
+    background-color: var(--global-bg-3);
+  }
+  .bg-global-4 {
+    background-color: var(--global-bg-4);
+  }
+  .bg-global-5 {
+    background-color: var(--global-bg-5);
+  }
+  .bg-global-6 {
+    background-color: var(--global-bg-6);
+  }
+  .text-global-1 {
+    color: var(--global-text-1);
+  }
+  .text-global-2 {
+    color: var(--global-text-2);
+  }
+  .text-global-3 {
+    color: var(--global-text-3);
+  }
+  .text-global-4 {
+    color: var(--global-text-4);
+  }
+  .text-global-5 {
+    color: var(--global-text-5);
+  }
+
+  /* EditText */
+  .bg-edittext-1 {
+    background-color: var(--edittext-bg-1);
+  }
+
+  /* Footer */
+  .text-footer-1 {
+    color: var(--footer-text-1);
+  }
+
+  /* Performance utilities */
+  .gpu-acceleration {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .contain-layout {
+    contain: layout;
+  }
+
+  .contain-paint {
+    contain: paint;
+  }
+
+  /* Mobile-first responsive utilities */
+  @media (max-width: 640px) {
+    .text-responsive {
+      font-size: clamp(0.875rem, 2.5vw, 1rem);
+    }
+    
+    .heading-responsive {
+      font-size: clamp(1.5rem, 8vw, 2.5rem);
+    }
+  }
+
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .text-global-2 {
+      color: var(--global-text-4);
+    }
+    
+    .text-global-1 {
+      color: var(--global-text-3);
+    }
+  }
+}
